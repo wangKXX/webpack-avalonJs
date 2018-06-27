@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="ms-controller" ms-controller="testCrl">
+        <xmp is="ms-test" ms-widget="[{id:'test11'},@config]"></xmp>
+        <div style="margin-top: 10px;">
+            <h2>父组件数据同步测试</h2>
+            <div>
+                父组件：{{@str}}
+                <br>父组件:{{@config.test}}
+                <br>父组件：{{@config.testObj.objStr}}
+            </div>
+        </div>
+    </div>
+
+    <!--<script src="http://cdn.bootcss.com/avalon.js/2.1.6/avalon.js"></script>-->
+    <script src="../dist/avalon.js"></script>
+
+    <script>
+        var vm;
+        avalon.component('ms-test', {
+            template: '<div>{{@str}}<div>{{@test}}</div><div>{{@testObj.objStr}}</div></div>',
+            defaults: {
+                str: '子组件str',
+                test: '子组件测试',
+                testObj: {
+                    objStr: '子级对象'
+                },
+                onReady: function() {
+                    var self = this;
+                    setTimeout(function() {
+                        self.str = '子组件数据更新了';
+                        self.test = '子组件数据更新了';
+                        self.testObj = {
+                            objStr: '子组件对象更新了'
+                        }
+                    }, 2000);
+                }
+            }
+        });
+
+        vm = avalon.define({
+            $id: 'testCrl',
+            str: '父组件str',
+            config: {
+                test: '父组件测试对象',
+                testObj: {
+                    objStr: '父级对象'
+                }
+            }
+        })
+
+        setTimeout(function() {
+            vm.str = '父组件 str 更新了';
+        }, 3000)
+    </script>
+</body>
+
+</html>
