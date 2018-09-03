@@ -2,8 +2,6 @@ import avalon from 'avalon2/dist/avalon'
 import $ from 'jquery'
 import 'normalize.css'
 import 'indexless'
-import 'aoscss'
-import AOS from 'aos'
 
 // 头部配置信息 headerName为头部导航显示信息，linkUrl为链接跳转路径
 var headerConfig = [{
@@ -26,9 +24,6 @@ var headerConfig = [{
     headerName: '标题一',
     linkUrl: 'index2.html',
     childrenItem: [{
-      headerName: '子标题一',
-      linkUrl: 'index2.html'
-    },{
       headerName: '子标题二',
       linkUrl: 'index2.html'
     }]
